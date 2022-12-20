@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Géolocalisation - {{parent()}}{% endblock %}
+
+{% block body %}
+
+	<main class="container-fluid">
+
+		<h1 class="text-center my-3">Bienvenue sur notre application de géolocalisation</h1>
+
+		<!-- Block fenêtres de saisie -->
+		<div class="row col-10 offset-1 mt-4 justify-content-center">
+			
+			{# Block fenêtre choix Adresse / ville #}
+			<div class="col-4 text-center bordure bordeur">
+
+				<label class="mb-3">Choisissez entre une ville ou une adresse complète</label>
+
+				<div id="radio" class="fields">
+
+					<input type="radio" class="radio mx-2" name="type" value="housenumber"><label class="jsx-2161906765 label-inline">Adresse complète</label>
+
+					<span class="mx-1">ou</span>
+
+					<input type="radio" class="radio mx-2" name="type" value="municipality"><label class="jsx-2161906765 label-inline">Ville</label>
+
+				</div>
+
+			</div>
+
+			{# Block fenêtre saisie Adresse / ville #}
+			<div class="col-4 text-center bordure bordeur ml-3">
+
+				<label for="adress" class="mb-3">Saisissez l'adresse ou le nom de la ville</label>
+
+				<div>
+
+					<input name="adress" id="adress" placeholder="Chercher une adresse ou une ville …" value="">
+
+				</div>
+
+			</div>
+
+			<!-- Block bouton -->
+			<div class="row col-10 offset-1 mt-4 justify-content-center text-center my-4 bouton">
+
+				<button class="btn btn-primary" id="submit" type="submit">Rechercher</button>
+
+			</div>
+
+			{# Block carte de localisation #}
+			<div class="container map mb-2">
+
+				<section id="map" class="map-full"></section>
+
+			</div>
+
+		</div>
+
+	</main>
+
+{% endblock %}

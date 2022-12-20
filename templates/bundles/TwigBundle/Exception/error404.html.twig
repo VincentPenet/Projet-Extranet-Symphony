@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée - {{parent()}}{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center">Page non trouvée</h1>
+
+<p class="text-center"> La page que vous cherchez n'est pas trouvée</p> 
+
+<p class="text-center"> Code retour : {{ status_code }} </p>
+
+{% endblock %}

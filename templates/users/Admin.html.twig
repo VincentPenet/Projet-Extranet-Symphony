@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page validation d'un membre - {{parent()}}{% endblock %}
+
+
+{% block body %}
+
+	<div class="container col-10 offset-1">
+
+		<h1 class="text-center my-3">Liste des membres en attente</h1>
+		<table class="table border rounded mx-5">
+			<thead>
+				<th>Pseudo</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Statut</th>
+				<th>Numéro de session</th>
+				<th>Année de session</th>
+
+			</thead>
+
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{user.pseudo}}</td>
+						<td>{{user.lastname}}</td>
+						<td>{{user.firstname}}</td>
+						<td>{{user.function}}</td>
+						<td>{{user.sessionNumber}}</td>
+						<td>{{user.trainingYear}}</td>
+						<td><a role="submit" href="{{ path('admin_activated', {id: user.id}) }}" class="btn btn-success" >Activer le compte</a></td>
+					</tr>
+				{% else %}
+					<tr>
+
+						<td colspan="5">
+							il n'y a pas d'utilisateur inscrit
+						</td>
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

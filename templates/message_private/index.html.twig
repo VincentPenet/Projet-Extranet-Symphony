@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message privée - {{parent()}}{% endblock %}
+
+{% block body %}
+
+
+	<main class="container">
+
+		<div class="row">
+
+			<div class="col">
+
+				<div class="card">
+
+					<!-- Entête formulaire de création d'un article -->
+					<h1 class="card-header col-8 offset-2 bg-white border-0 text-center py-3" >
+
+						Envoyer un message privé
+
+					</h1>
+
+					<!-- Formulaire d'envoi d'un message -->
+					<div class="card-body card-article col-8 offset-2 border rounded mb-5 py-3">
+
+						{# On désactive la validation par défaut du navigateur #}
+						{{ form_start (MessageForm, {'attr': {'novalidate': 'novalidate'}})}}
+
+							{# Affichage des champs destinaire, objet et corps du message #}
+							{{form_widget(MessageForm)}}
+
+							{# Affichage des erreurs #}
+							<div>
+								{{ form_errors(MessageForm) }}
+							</div>
+
+							<div class="text-center">
+							{# Bouton d'envoi #}
+							<button class="btn btn-primary">Envoyer</button>
+							</div>
+
+						{{ form_end (MessageForm)}}
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
+
+{% endblock %}

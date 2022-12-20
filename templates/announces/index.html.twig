@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des annonces - {{parent()}} {% endblock %}
+
+{% block body %}
+
+	<main>
+
+		<h1 class="text-center mt-3 ">Liste des annonces</h1>
+
+		<label class="col-12 text-list text-center mb-3">Cliquer sur l'annonce pour la consulter</label>
+
+
+        <!-- Liste des annonces -->
+        <div class="col">
+
+            <div class="row">
+
+				<!-- Boucle d'affichage de tous les annonces -->
+				{% for announce in announces %}
+
+				<div class="col-10 offset-1 col-md-6 col-lg-4">
+
+					<div class="card card-article mb-4">
+
+						<a href="{{ path('announce_show', {slug: announce.slug}) }}" class="card-body card-article" style="text-decoration:none; color:black;">
+
+							<!-- Affichage du titre de l'annonce -->
+							<h4 class="card-title">{{ announce.nameCompany }}</h4>
+
+							<!-- Affichage du début la description de l'annonce (texte tronqué) -->
+							<p class="card-text">{{ announce.description | u.truncate( 50, '...', false) }}</p>
+
+							<!-- Affichage de la catégorie de l'annonce -->
+							<p>Catégorie : {{ announce.description }}</p>
+
+							<!-- Affichage de la date de publication de l'annonce -->
+							{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
+							<p>Publié le <time>{{ announce.createdAt |ago }}</time></p>
+						
+						</a>
+
+					</div>
+
+				</div>
+
+				{% endfor %}
+
+			</div>
+
+		</div>
+
+	</Main>
+
+{% endblock %}

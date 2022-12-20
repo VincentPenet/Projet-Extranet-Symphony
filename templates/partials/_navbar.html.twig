@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-lg navbar-dark ">
+
+	<a class="navbar-brand" href="{{path('home')}}"><img src="{{asset('/images/logo3.png')}}" alt="Logo du site"></a>
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+	
+		<span class="navbar-toggler-icon"></span>
+	
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarContent">
+		
+		<ul class="navbar-nav">
+
+			<li class="nav-item">
+
+				<a class="nav-link text-white h3" href="{{path('users_list')}}">Les Membres</a>
+
+			</li>
+
+			<li class="nav-item dropdown">
+
+				<a class="nav-link dropdown-toggle text-white h3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Annonces
+				</a>
+
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+					<a class="dropdown-item h4" href="{{path('create_announce')}}">Créer une annonce</a>
+
+					<a class="dropdown-item h4" href="{{path('announces')}}">Liste des annonces</a>
+
+					<a class="dropdown-item h4" href="{{path('api')}}">Outil de géolocalisation</a>
+
+				</div>
+
+			</li>
+
+			<li class="nav-item dropdown">
+
+				<a class="nav-link dropdown-toggle text-white h3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Articles
+				</a>
+
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+					<a class="dropdown-item h4" href="{{path('article_create')}}">Créer une article</a>
+
+					<a class="dropdown-item h4" href="{{path('list_article')}}">Liste des articles</a>
+
+				</div>
+
+			</li>
+
+			<li class="nav-item dropdown">
+
+				<a class="nav-link dropdown-toggle text-white h3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				{{app.user.lastname}} {{app.user.firstname}}
+				</a>
+
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+					<a class="dropdown-item h4" href="{{path('users_Profil')}}">
+						Voir mon profil</a>
+
+					<a class="dropdown-item h4" href="{{path('message_private')}}">
+						Envoyer un message
+					</a>
+
+					<a class="dropdown-item h4" href="{{path('message_receveid')}}">
+						Voir mes messages
+					</a>
+
+					<a class="dropdown-item h4" href="{{path('app_logout')}}">Se déconnecter</a>
+
+				</div>
+
+			</li>
+
+		</ul>
+
+		{% if app.user.image != null %}
+
+			<img class="avatar" src="{{ vich_uploader_asset(app.user.image) }}" alt="{{ app.user.email }}">
+
+		{% else %}
+
+			<img class="avatar" src="{{asset('/images/avatars/avatar_base.png')}}" alt="{{ app.user.email }}">
+
+		{% endif %}
+
+	</div>
+	
+</nav>

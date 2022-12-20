@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Message reçu - {{parent()}}{% endblock %}
+
+{% block body %}
+
+	<main>
+
+		<h1 class="text-center p-4">Messages reçus</h1>
+
+		<!-- Liste des messages -->
+		<div class="col">
+
+			<div class="row align-items-center col-10 offset-1 border text-center">
+
+				<h2 class="col-3 mb-0">Objet</h2>
+
+				<h2 class="col-5 mb-0">Message</h2>
+
+				<h2 class="col-2 mb-0">date</h2>
+
+				<h2 class="col-2 mb-0"></h2>
+
+			</div>
+
+			<div class="row align-items-center col-10 offset-1 border text-center">
+				{% for message in messages %}
+
+					<p class="col-3 mb-0 mt-4">{{message.object}}</p>
+
+					<p class="col-5 mb-0 mt-4">{{message.message}}</p>
+
+					<p class="col-2 mb-0 mt-4">{{message.createdAt|ago}}</p>
+
+					<button type="button" class="col-2 btn btn-success m-0">Répondre</button>
+
+				{% else %}
+
+					<p class="row align-items-center text-center justify-content-center col-12 mb-0 py-3">Vous n'avez reçu aucun message pour le moment</p>
+
+				{% endfor %}
+
+			</div>
+
+		</div>
+
+	</Main>
+
+{% endblock %}

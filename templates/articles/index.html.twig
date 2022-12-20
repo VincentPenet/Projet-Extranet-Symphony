@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles - {{parent()}} {% endblock %}
+
+{% block body %}
+
+	<main>
+
+		<h1 class="text-center mt-3 ">Liste des articles</h1>
+
+		<label class="col-12 text-list text-center mb-3">Cliquer sur l'article pour le lire</label>
+
+
+        <!-- Liste des articles -->
+        <div class="col">
+
+            <div class="row">
+
+				<!-- Boucle d'affichage de tous les articles -->
+				{% for article in articles %}
+
+				<div class="col-10 offset-1 col-md-6 col-lg-4">
+
+					<div class="card card-article mb-4">
+
+						<a href="{{ path('article_show', {slug: article.slug}) }}" class="card-body card-article" style="text-decoration:none; color:black;">
+
+							<!-- Affichage du titre de l'article -->
+							<h4 class="card-title">{{ article.title }}</h4>
+
+							<!-- Affichage du début la description de l'article (texte tronqué) -->
+							<p class="card-text">{{ article.description | u.truncate(80, '...', false) }}</p>
+
+							<!-- Affichage de la catégorie de l'article -->
+							<p>Catégorie : {{ article.categories }}</p>
+
+							<!-- Affichage de la date de publication de l'article -->
+							{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
+							<p>Publié le <time>{{ article.createdAt | ago }}</time></p>
+						
+						</a>
+
+					</div>
+
+				</div>
+
+				{% endfor %}
+
+			</div>
+
+		</div>
+
+	</Main>
+
+{% endblock %}

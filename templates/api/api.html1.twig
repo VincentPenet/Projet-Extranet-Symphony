@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Géolocalisation - {{parent()}}{% endblock %}
+
+{% block body %}
+
+	<div class="text-center my-4">
+
+		<h1>Bienvenue sur notre application de géolocalisation</h1>
+		
+	</div>
+
+	<div class="container-fluid">
+
+		<div class="gouv">
+
+			<div class="bordure col bordeur mr-3 py-2">
+
+				<div>
+
+					<h4 class="text-center mb-3">Choisissez entre une ville ou une adresse complète</h4>
+
+					<div id="radio" class="fields">
+
+                        <input type="radio" class="radio mx-2" name="type" value="housenumber"><label class="jsx-2161906765 label-inline">Adresse complète</label>
+
+						<span class="mx-1">ou</span>
+
+                        <input type="radio" class="radio mx-2" name="type" value="municipality"><label class="jsx-2161906765 label-inline">Ville</label>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="bordure text-center col column bordeur py-2">
+
+				<label for="adress" class="mb-3">Saisissez l'adresse ou le nom de la ville</label>
+
+				<input name="adress" id="adress" placeholder="Chercher une adresse ou une ville …" value="">
+
+			</div>
+
+		</div>
+
+        <div class="text-center mt-3 mb-3 bouton">
+
+            <button class="btn btn-primary" id="submit" type="submit">Rechercher</button>
+
+        </div>
+
+	</div>
+
+	<div class="container map mb-2">
+
+		<section id="map" class="map-full"></section>
+
+	</div>
+
+{% endblock %}

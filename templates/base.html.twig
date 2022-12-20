@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>{% block title %}Extranet wf3{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="robot" content="index, follow, archive">
+
+		<meta name="description" lang="fr" content="Site extranet privé des membres du centre de formation Webforce 3 de Lille" />
+
+		<meta name="author" content="Groupe 2-#885 de Webforce 3 Lille" />
+
+		<meta name="copyright" content="© CC BY-NC-SA 4.0" />
+
+        <!-- Logo 3 de WF3 dans l'onglet de la page -->
+        <link rel="icon" type="image/png" href="{{asset('/images/Logo_wf3.png')}}"/>
+
+
+        {# Run `composer require symfony/webpack-encore-bundle`
+        and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+
+            <!-- Script Bootstrap -->
+			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+			
+            <!-- Font awesone bibliothèque d'icones -->
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+			
+            <!-- Script leaflet -->
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+
+            <!-- Fichier de style CSS -->
+            <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+            <link rel="stylesheet" href="{{ asset('css/announces.css')}}">
+
+            <link rel="stylesheet" href="{{ asset('css/messages.css')}}">
+
+            <link rel="stylesheet" href="{{ asset('css/articles.css')}}">
+            
+
+            <!-- Fichier Media Query -->
+            <link rel="stylesheet" href="{{ asset('css/media-query.css')}}">
+
+        {% endblock %}
+
+    </head>
+
+    <body>
+
+        {# Affichage menu page d'accueil ou première page suivant que l'utilisateur est inscrit ou non #}
+		{%  if app.user %}
+
+			{{ include('partials/_navbar.html.twig') }}
+
+		{% else  %}
+
+			{{ include('partials/_navbarlogin.html.twig') }}
+
+		{% endif %}
+
+
+    {# Afficher les messages Flash #}
+    <div class="container">
+
+        {% for label, messages in app.flashes %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endfor %}
+        
+    </div>
+
+        {# Affichage du corps principal de la page #}
+        {% block body %}
+        {% endblock %}
+
+
+        {# Affichage de la Side-bar #}
+		{% block sidebar %}
+			<div class="container">
+
+				<div class="sidebar">
+
+					<a href="https://www.wf3.fr/" class="rebordIconTop siteWeb" target="_blank"><img src="{{asset('/images/Logo_wf3.png')}}" alt="Logo du site"></a>
+
+					<a href="https://www.linkedin.com/school/webforce3/" class="linkedin" target="_blank">
+
+						<i class="fab fa-linkedin"></i>
+
+					</a>
+
+					<a href="/api" class="rebordIconDown api">
+
+						<i class="fas fa-map-marked-alt"></i>
+
+					</a>
+
+				</div>
+
+			</div>
+
+		{% endblock %}
+
+
+        {# Icône scroll pour remonter en début de page #}
+        {% block scroll %}
+        <div class="text-right" id="scrollUp">
+
+            <a href="#top">
+
+                <i class="far fa-arrow-alt-circle-up fa-2x mr-6"></i>
+            
+            </a> 
+            
+        </div>
+
+        {% endblock %}
+
+
+        {# Affichage du pied de page Footer #}
+		{{  include('partials/_footer.html.twig') }}
+    
+
+    <!-- Scripts js -->
+    {% block javascripts %}
+
+            <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>            
+            
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>            
+
+            <!-- API externe : API Adresse de geo.api.gouv.fr et librairie JavaScript Leaflet -->
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+            <script src="{{ asset('js/api.js')}}"></script>
+
+            <!-- Scripts js du projet-->
+			<script src="{{ asset('js/script.js')}}"></script>
+
+    {% endblock %}
+
+    </body>
+
+</html>

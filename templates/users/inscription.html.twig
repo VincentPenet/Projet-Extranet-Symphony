@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription - 	{{parent()}} {% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<div class="col-10 offset-1">
+
+			<h1 class="text-center pt-4">Bienvenue sur l'Extranet de Webforce 3 Lille</h1>
+
+			<div>
+
+				<p class="pt-2">
+					Ce site est uniquement destiné à la communauté du centre de formation Webforce 3 de Lille.
+								Cette communauté fédère les anciens et actuels apprenants et formateurs de ce centre.
+				</p>
+
+				<p class="text-center pt-1 font-weight-bold">
+					Il n'est donc accessible qu'aux membres de cette communauté.
+				</p>
+
+				<p class="pt-1 font-weight-bold">
+					Si tu en fais partie, c'est avec plaisir que nous t'invitons à faire ta demande d'inscription
+								en remplissant le formulaire ci-dessous.
+				</p>
+
+				<p class="pt-1 font-weight-bold">
+					Attention : L'envoi du formulaire ne te permettra pas de te connecter automatiquement.
+				</p>
+
+				<p class="pt-1">
+					Ton adhésion, entièrement gratuite, nécessite au préalable une validation par le centre de formation Webforce 3 de Lille,
+								qui est en charge de l'accepter ou non. C'est pourquoi, en remplissant ce formulaire, nous t'invitons à nous fournir un maximum d'informations, qui pourront faciliter la recherche et par conséquent la validation de ton adhésion. Penses notamment à donner si possible ton numéro de session de formation (Exemple : 885), ou au minimum ton année de formation.
+				</p>
+
+				<p class="pt-1">
+					Ton formulaire envoyé, tu recevras un mail automatique, confirmant la réception de ta demande.
+								Cependant, il te faudra attendre quelques jours, pour recevoir un mail d'acceptation ou de refus de ton adhésion.
+								En cas de réponse positive, tu pourras alors te connecter à cet Extranet par l'intermédiaire de ton adresse mail et du mot de passe que tu as saisi dans le formulaire.
+								En cas de réponse négative, le centre de formation Webforce 3 de Lille se réserve le droit de ne pas communiquer les raisons du refus.
+				</p>
+
+				<p class="text-center pt-1 font-weight-bold">
+					C'est avec grand plaisir que nous t'accueillerons
+				</p>
+
+				<p class="text-center font-weight-bold">
+					sur cette plateforme de partage et de communication.
+				</p>
+
+				<p class="text-center pt-1">
+					Que La Force du Web soit avec toi !
+				</p>
+
+				<p class="text-center pt-1">
+					Signé,
+				</p>
+
+				<p class="text-center pt-1">
+					Les membres de l'Extranet de Webforce 3 Lille
+				</p>
+
+			</div>
+
+		</div>
+
+		<h1 class="text-center pt-4">Votre demande d'inscription</h1>
+
+		<div class="col-10 offset-1">
+			{{ form_start(registrationForm) }}
+			{{ form_widget(registrationForm) }}
+			<div class="text-center">
+				<button type="submit" class="btn btn-success">Confirmer</button>
+			</div>
+			{{ form_end(registrationForm) }}
+
+
+		</div>
+</div>
+
+	{% endblock %}
+	{% block sidebar %}{% endblock %}

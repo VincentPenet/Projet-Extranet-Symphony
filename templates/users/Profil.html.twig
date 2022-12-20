@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page profil - {{parent()}} {% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center my-3">Profil de 
+		{{app.user.lastname}} {{app.user.firstname}}</h1>
+
+	<div class="container col-4 offset-4 border rounded">
+		<table class="table">
+
+
+	<div class="container col-4 offset-4 border rounded">
+		<table class="table">
+
+			<tr>
+				<td>Nom :</td>
+				<td>{{app.user.firstname}}</td>
+			</tr>
+			<tr>
+				<td>Prénom :</td>
+				<td>{{app.user.lastname}}</td>
+			</tr>
+			<tr>
+				<td>Pseudo :</td>
+				<td>{{app.user.pseudo}}</td>
+			</tr>
+			<tr>
+				<td>Adresse mail :</td>
+				<td>{{app.user.email}}</td>
+			</tr>
+			<tr>
+				<td>Numéro de session :</td>
+				<td>{{app.user.sessionnumber}}</td>
+			</tr>
+			<tr>
+				<td>Numéro de téléphone :</td>
+				<td>{{app.user.numberPhone}}</td>
+			</tr>
+			<tr>
+				<td>Linkedin :</td>
+				<td>{{app.user.linkedin}}</td>
+			</tr>
+			<tr>
+				<td>GitHub :</td>
+				<td>{{app.user.github}}</td>
+			</tr>
+			<tr>
+				<td>Twitter :</td>
+				<td>{{app.user.twitter}}</td>
+			</tr>
+			<tr>
+				<td>Situation actuelle :</td>
+				<td>{{app.user.currentSituation}}</td>
+			</tr>
+			<tr>
+				<td>Poste actuel :</td>
+				<td>{{app.user.currentPost}}</td>
+			</tr>
+		</table>
+
+	</div>
+
+
+	<div class="col-4 offset-4 d-flex flex-column text-center">
+		<a role="button" class="btn btn-success" href="{{path('editProfil')}}">Modifier mon profil</a>
+		<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">Suprimer mon compte</a>
+
+		<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voir mes messages privés</a>
+		{% if is_granted('ROLE_ADMIN') %}
+			<a role="submit" class="btn btn-primary" href="{{ path('admin')}}">Voir les comptes en attente</a>
+		{% endif %}
+		
+	</div>
+	<br>
+	<div class="col-10 offset-1 text-center">
+		<h3>Liste des six derniers articles</h3>
+	<table classe="table">
+
+		<thead>
+			<th>Titre</th>
+			<th>Date de création</th>
+			<th>Catégories</th>
+			<th>Description</th>
+
+		</thead>
+		<tbody>
+			{% for announce in announces %}
+				<tr>
+					<td>{{announce.title}}</td>
+					<td>{{announce.createdAt |ago}}</td>
+					<td>{{announce.categories}}</td>
+					<td>{{announce.description}}</td>
+					<td><a class="btn btn-primary" href="{{ path('announce_show', {slug: announce.slug}) }}">Voir l'annonce</a></td>
+				</tr>
+				
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						Vous n'avez pas posté d'annonce</td>
+				</tr>
+
+
+			{% endfor %}
+		</tbody>
+	</table>
+
+	</div>
+
+	<div class="col-10 offset-1 text-center">
+
+		<h3>Liste de vos six derniers articles</h3>
+	<table class="table">
+		<thead>
+			<th>Titre</th>
+			<th>Date de création</th>
+			<th>Catégories</th>
+			<th>Description</th>
+
+		</thead>
+		<tbody>
+			{% for article in articles %}
+				<tr>
+					<td>{{article.title}}</td>
+					<td>{{article.createdAt |ago}}</td>
+					<td>{{article.categories}}</td>
+					<td>{{article.description}}</td>
+					<td><a class="btn btn-primary" href="{{ path('article_show', {slug: article.slug}) }}">Voir l'article</a></td>
+				</tr>
+				
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						Vous n'avez pas posté d'articles</td>
+				</tr>
+
+
+			{% endfor %}
+		</tbody>
+	</table>
+	</div>
+
+{% endblock %}

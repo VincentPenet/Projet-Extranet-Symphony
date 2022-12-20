@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article - {{parent()}}{% endblock %}
+
+{% block body %}
+
+    <article class="container-fluid">
+
+        <!-- Block titre de l'article -->
+        <div class="row mt-4">
+
+            <div class="card-article col-8 offset-2 border rounded py-3">
+            
+                <h2>{{ article.title }}</h2>
+            
+            </div>
+
+        </div>
+
+        <!-- Block catégorie de l'article -->
+        <div class="row mt-4">
+
+            <div class="card-article col-8 offset-2 border rounded mb-0 pt-3">
+            
+                <p>Catégorie : <span class="font-weight-bold" > {{ article.categories }}</span></p>
+            
+            </div>
+            
+        </div>
+
+        <!-- Block description de l'article -->
+        <div class="row mt-4">
+
+            <div class="card-article col-8 offset-2 border rounded text-justify py-3">
+
+                <article>{{ article.description }}</article>
+
+            </div>
+
+        </div>
+
+        <!-- Block lien vers l'article -->
+        <div class="row mt-4">
+
+            <div class="card-article col-8 offset-2 border rounded py-2">
+
+                <a href="{{ article.originalLink }}">Lien vers l’article</a>
+
+            </div>
+
+        </div>
+
+        <!-- Block date de publication -->
+        <div class="row mt-4">
+
+            <div class="card-article col-8 offset-2 border rounded pt-3">
+
+                <p>Date de publication, le <time>{{ article.createdAt |format_date ('long', locale='fr') }}</time></p>
+
+            </div>
+
+        </div>
+
+        <div class="row mt-4">
+
+            <!-- Block de boutons de modifications de l'article -->
+            <div class="col-8 offset-2">
+
+                {# Bouton de modification avec condition de connexion de l'utilisateur et d'autorisation de modifier car l'article lui est associé #}
+                {% if is_granted('edit', article) %}
+
+                <!-- Bouton de modification de l'article -->
+                <a href="{{ path('article_edit', {id: article.id}) }}" class="btn btn-success mr-3">Modifier l'article</a>
+
+                {% endif %}
+
+                {# Bouton de suppression avec condition de connexion de l'utilisateur et d'autorisation de supprimer car l'article lui est associé #}
+                {% if is_granted('delete', article) %}
+
+                {# Bouton de suppression sans fenêtre de validation #}
+                {# <a href="{{ path('article_delete', {id: article.id}) }}" class="btn btn-danger">Supprimer</a> #}
+
+                <!-- Bouton de suppression de l'article -->
+                <a class="btn btn-danger text-white" data-toggle="modal" data-target="#delete-Modal">Supprimer l'article</a>
+
+                <!-- Fenêtre (Modal) de validation de la suppression -->
+                <div class="modal fade" id="delete-Modal" tabindex="-1" role="dialog" aria-labelledby="delete-Modal" aria-hidden="true">
+
+                    <div class="modal-dialog" role="document">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+
+                                <h5 class="modal-title text-danger text-uppercase">Attention</h5>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+                            </div>
+
+                            <div class="modal-body">
+                                Êtes-vous sûr de vouloir supprimer cet article ?
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <a href="" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+
+                                <a href="{{ path('article_delete', {id: article.id}) }}" class="btn btn-danger">Supprimer</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </article>
+
+{% endblock %}

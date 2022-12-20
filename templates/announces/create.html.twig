@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une annonce - {{parent()}}{% endblock %}
+
+
+{% block body %}
+
+	<main class="container">
+
+		<div class="row">
+
+			<div class="col">
+
+				<div class="card">
+
+					<!-- Entête formulaire de création d'une annonce -->
+					<h1 class="card-header col-8 offset-2 bg-white border-0 text-center py-3" >
+
+						Créer une annonce
+
+					</h1>
+
+					<!-- Formulaire de création -->
+					<div class="card-body card-article col-8 offset-2 border rounded mb-5 py-3">
+
+						{# On désactive la validation par défaut du navigateur #}
+						{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
+
+							{# Affichage des champs titre, description, catégorie, lien annonce, coordonnées de l'entreprise #}
+							{{form_widget(form)}}
+
+							{# Affichage des erreurs #}
+							<div>
+								{{ form_errors(form) }}
+							</div>
+
+							<div class="text-center">
+							{# Bouton de validation #}
+							<button class="btn btn-primary">Confirmer</button>
+							</div>
+
+						{{ form_end (form)}}
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
+
+{% endblock %}

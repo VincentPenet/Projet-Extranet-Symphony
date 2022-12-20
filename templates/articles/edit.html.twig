@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'un article - {{parent()}}{% endblock %}
+
+{% block body %}
+
+	<main class="container">
+
+		<div class="row">
+
+			<div class="col">
+
+				<div class="card border rounded">
+
+					<!-- Entête formulaire de modification d'un article -->
+					<h2 class="card-header col-8 offset-2 text-center my-3 py-3" >
+
+						Modifier l'article intitulé
+
+						<br>
+						
+						{{ article.title }}
+
+					</h2>
+
+					<!-- Formulaire de modification -->
+					<div class="card-body card-article col-8 offset-2 mb-3 py-3">
+
+						{# On désactive la validation par défaut du navigateur #}
+						{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
+
+							{# Affichage des champs titre, description, catégorie et lien de l'article #}
+							{{form_widget(form)}}
+
+							{# Affichage des erreurs #}
+							<div class="">
+								{{ form_errors(form) }}
+							</div>
+
+							{# Le bouton de validation de la modification de l'article #}
+							<button class="btn btn-primary">Confirmer</button>
+
+						{{ form_end (form)}}
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
+
+{% endblock %}

@@ -1,0 +1,310 @@
+html{
+    position: relative;
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+/* Début Header */
+.navbar{
+    background:#6358B2!important;
+    
+    height: 150px;
+    width: 100%;
+}
+
+img{
+    height: 150px; 
+    width : 300px;
+    padding : 10px;
+}
+
+.navbar-collapse{
+    justify-content: flex-end;
+}
+
+.navbar-nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-nav>li{
+    margin: 10px 20px;
+}
+
+.avatar{
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+}
+
+.navbar-brand{
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    width: 100px;
+}
+
+
+/* Fin Header */
+
+body{
+    margin-bottom: 200px;
+}
+
+
+/* Sidebar */
+.sidebar{
+    position: fixed;
+    top: 40%;
+    right: 2%;
+
+}
+
+.sidebar a{
+    display: table-caption;
+    text-align: center;
+    padding: 4px;
+    transition: all 0.3s ease;
+    font-size: 20px;
+}
+
+.sidebar>a img{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.sidebar>a i{
+    font-size: 2rem;
+}
+
+.rebordIconTop{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.siteWeb{
+    background-color: #f25e57;
+    color: black;
+}
+
+.linkedin{
+    background-color: #46aeb5;
+    color: black;
+}
+
+.api{
+    background-color: #6467e3;
+    color: black;
+}
+
+.rebordIconDown{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    
+}
+
+/* Api */
+.gouv{
+    display: flex;
+    width: 58%;
+    margin: auto;
+}
+
+.bordure{
+    border: 2px solid black;
+}
+
+.bordeur{
+    border-radius: 15px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.column>label{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+#adress{
+    margin: 0 0 10px 0;
+}
+
+.bouton>button{
+    width: 20%;
+    border-radius: 10px;
+}
+
+.map-full{
+    height: 45vh;
+    border-radius: 15px;
+}
+
+/* Style formulaire Article et annonce */
+.card-article, .card-announce{
+    background: rgb(211, 211, 211);
+}
+
+/* Début Footer */
+.footer{
+    position:absolute;
+    bottom: 0;
+    background: #6358B2 ;
+    width: 100%;
+}
+
+.copyright{
+    font-size: 20px
+}
+
+.footer a{
+    margin: 0 25px 0 0;
+}
+
+.img-footer{
+    width: 42px;
+    height: 48px;
+    background-color: white;
+    border-radius: 10%;
+}
+
+.img-footer>a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
+}
+
+.img-footer > a > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.siteWeb-footer>img{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.footer a>i{
+    font-size: 3rem;
+}
+
+.map-footer{
+    height: 150px; 
+    width : 300px;
+
+}
+
+.map-footer>img{
+    border-radius: 15px;
+}
+/* Fin Footer */
+
+/* Responsive tablette vers pc */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .navbar{
+        height: auto;
+    }
+    img{
+        height: 100px; 
+        width : 200px;
+        padding : 5px;
+    }
+    .navbar-toggler{
+        margin-right: 100px;
+    }
+    #scrollUp{
+        margin-right: 50px;
+    }
+    
+}
+/* Responsive tel vers tablette */
+@media screen and (min-width: 426px) and (max-width: 769px) {
+    .navbar{
+        height: auto;
+    }
+    img{
+        height: 100px; 
+        width : 200px;
+        padding : 5px;
+    }
+    .navbar-toggler{
+        margin-right: 100px;
+    }
+    .sidebar{
+        z-index: 5;
+    }
+    #scrollUp{
+        margin-right: 50px;
+        z-index: 5;
+    }
+    .footer{
+        padding: 15px 0;
+    }
+    .respons{
+        flex-direction: column;
+        padding: 0;
+    }
+    .res{
+        justify-content: center!important;
+    }
+    .map-footer{
+        text-align: center;
+        margin: auto;
+    }
+}
+/* Responsive tel */
+@media screen and (max-width: 426px) {
+    .navbar{
+        height: auto;
+    }
+    img{
+        height: 100px; 
+        width : 200px;
+        padding : 5px;
+    }
+    .navbar-toggler{
+        margin-right: 100px;
+    }
+    .sidebar{
+        z-index: 5;
+    }
+    #scrollUp{
+        margin-right: 50px;
+        z-index: 5;
+    }
+    .footer{
+        padding: 15px 0;
+    }
+    .respons{
+        flex-direction: column;
+        padding: 0;
+    }
+    .res{
+        justify-content: center!important;
+    }
+    .map-footer{
+        text-align: center;
+        margin: auto;
+    }
+
+}

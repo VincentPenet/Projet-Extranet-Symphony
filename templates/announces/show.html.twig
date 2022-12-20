@@ -1,0 +1,235 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce -
+	{{parent()}}
+{% endblock %}
+
+{% block body %}
+
+	<main class="container-fluid">
+
+		<!-- Block titre de l'annonce -->
+		<div class="row mt-4">
+
+			<div class="card-announce row col-6 offset-3 border rounded" style="background: rgb(211, 211, 211);">
+
+				<div class="col-4 text-right">
+
+					<p>Le poste :</p>
+
+				</div>
+
+				<div class="col-7">
+
+					<p class="font-weight-bold">{{ announce.title }}</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Block catégorie de l'annonce -->
+		<div class="row mt-4">
+
+			<div class="card-announce row col-6 offset-3 border rounded mb-0 pt-3" style="background: rgb(211, 211, 211);">
+
+				<div class="col-4 text-right">
+
+					<p>Type d'emploi :</p>
+
+				</div>
+
+				<div class="col-7">
+
+					<p class="font-weight-bold">{{ announce.categories }}</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Block coordonnées de l'entreprise -->
+		<div class="row mt-4">
+
+			<div class="card-announce col-6 offset-3 border rounded mb-0 pt-3" style="background: rgb(211, 211, 211);">
+
+                <div class="row">
+
+                    <div class="col-4 text-right">
+
+                        <p>Nom de l'entreprise :</p>
+
+                    </div>
+
+                    <div class="col-7">
+
+                        <p class="font-weight-bold">{{ announce.nameCompany }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                
+                    <div class="col-4 text-right">
+
+                        <p>Adresse :</p>
+
+                    </div>
+
+                    <div class="col-7">
+
+                        <p class="font-weight-bold">{{ announce.adressCompany }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    {% if announce.adressAdditional != ''  %}
+
+                        <div class="col-4">
+
+                            <p></p>
+
+                        </div>
+
+                        <div class="col-7">
+
+                            <p class="font-weight-bold">{{ announce.adressAdditional }}</p>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-4 text-right">
+
+                        <p>Code postal :</p>
+
+                    </div>
+
+                    <div class="col-7">
+
+                        <p class="font-weight-bold">{{ announce.zipCode }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-4 text-right">
+
+                        <p>Ville :</p>
+
+                    </div>
+
+                    <div class="col-7">
+
+                        <p class="font-weight-bold">{{ announce.city }}</p>
+
+                    </div>
+
+                </div>
+
+			</div>
+
+		</div>
+
+		<!-- Block date de publication -->
+		<div class="card-announce row mt-4">
+
+			<div class="card-announce row col-6 offset-3 border rounded pt-3" style="background: rgb(211, 211, 211);">
+
+					<p>Date de publication, le <span class="font-weight-bold">{{ announce.createdAt |format_date ('long', locale='fr') }}</span>
+
+			</div>
+
+		</div>
+
+        <!-- Block de bouton pour postuler directement à l'annonce -->
+		<div class="row col-8 offset-2 mt-4 justify-content-center">
+
+			<div class="col-auto modal-footer text-center">
+
+				{% if announce.originalLink != ''  %}
+
+					<a class=" btn btn-primary align-self-center px-4" href="{{ announce.originalLink }}">
+						Postuler
+					</a>
+
+				{% endif %}
+
+			</div>
+
+        </div>
+
+        <!-- Block de boutons de modifications de l'annonce -->
+        <div class="row col-6 offset-3 justify-content-center">
+
+            {# Bouton de modification avec condition de connexion de l'utilisateur et d'autorisation de modifier car l'annonce lui est associé #}
+            {% if is_granted('edit', announce) %}
+
+                <!-- Bouton de modification de l'annonce -->
+                <a href="{{ path('announce_edit', {id: announce.id}) }}" class="btn btn-success mr-3">Modifier l'annonce</a>
+
+            {% endif %}
+
+            {# Bouton de suppression avec condition de connexion de l'utilisateur et d'autorisation de supprimer car l'annonce lui est associé #}
+            {% if is_granted('delete', announce) %}
+
+                {# Bouton de suppression sans fenêtre de validation #}
+                {# <a href="{{ path('announce_delete', {id: announce.id}) }}" class="btn btn-danger">Supprimer</a> #}
+
+                <!-- Bouton de suppression de l'annonce -->
+                    <a class="btn btn-danger text-white" data-toggle="modal" data-target="#delete-Modal"> Supprimer l'annonce</a>
+
+                <!-- Fenêtre (Modal) de validation de la suppression -->
+                <div class="modal fade" id="delete-Modal" tabindex="-1" role="dialog" aria-labelledby="delete-Modal" aria-hidden="true">
+
+                    <div class="modal-dialog" role="document">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+
+                                <h5 class="modal-title text-danger text-uppercase">Attention</h5>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+                            </div>
+
+                            <div class="modal-body">
+                                Êtes-vous sûr de vouloir supprimer cette annonce ?
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <a href="" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+
+                                <a href="{{ path('announce_delete', {id: announce.id}) }}" class="btn btn-danger">Supprimer</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+	</main>
+
+{% endblock %}

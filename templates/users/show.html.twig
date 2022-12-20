@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil - {{parent()}}{% endblock %}
+
+
+{% block body %}
+
+	<h1 class="text-center my-3">Profil de 
+		{{users.firstname}} {{users.lastname}}</h1>
+
+
+	<div class="container">
+<table>
+		<tr>
+			<td>Nom :</td>
+			<td>{{users.lastname}}</td>
+		</tr>
+		<tr>
+			<td>Prénom :</td>
+			<td>{{users.firstname}}</td>
+		</tr>
+		<tr>
+			<td>Pseudo :</td>
+			<td>{{users.pseudo}}</td>
+		</tr>
+		<tr>
+			<td>Adresse mail :</td>
+			<td>{{users.email}}</td>
+		</tr>
+		<tr>
+			<td>Numéro de session :</td>
+			<td>{{users.sessionnumber}}</td>
+		</tr>
+		<tr>
+			<td>Numéro de téléphone :</td>
+			<td>{{users.numberPhone}}</td>
+		</tr>
+		<tr>
+			<td>Linkedin :</td>
+			<td>{{users.linkedin}}</td>
+		</tr>
+		<tr>
+			<td>GitHub :</td>
+			<td>{{users.github}}</td>
+		</tr>
+		<tr>
+			<td>Twitter :</td>
+			<td>{{users.twitter}}</td>
+		</tr>
+		<tr>
+			<td>Situation courante :</td>
+			<td>{{users.currentSituation}}</td>
+		</tr>
+		<tr>
+			<td>Poste actuelle :</td>
+			<td>{{users.currentPost}}</td>
+		</tr>
+
+</table>
+	</div>
+
+
+	<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voir mes messages privés</a>
+
+
+{% endblock %}

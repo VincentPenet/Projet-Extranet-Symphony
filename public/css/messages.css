@@ -1,0 +1,49 @@
+/* css pour page messagePrivate */
+h1{
+    font-size: 30px;;
+    color: black;
+    margin-bottom: 15px;
+}
+h2{
+    font-size : 20px;
+}
+
+.btn{ /* btn envoyer */
+    font-size: 20px;
+    margin-top : 10px
+}
+
+/* CSS page Home Carroussel */
+
+.w-100{
+
+    height: 18rem;
+    
+}
+.bienvenue-texte{
+
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right:10px;
+    
+}
+
+#scrollUp {
+    opacity: 2;
+    z-index: 2;
+    cursor: pointer;
+    bottom: 10px;
+}
+
+img.scroll{
+    height: 45px;
+    width: 30px;    
+    left: 40px;
+}
+.finTexte{
+    margin-right: 55%;
+}
+
+
+
+
